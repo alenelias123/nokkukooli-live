@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    background-color: #12100E;
+    color: #F4F1EA;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #12100E;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #C85A32;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #E5A93C;
+  }
+}
+
+/* Subtle CRT scanline effect */
+.scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 14, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+}
+
+/* Vintage film grain */
+.film-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* Glow effects */
+.glow-gold {
+  box-shadow: 0 0 25px rgba(229, 169, 60, 0.25);
+}
+
+.glow-crimson {
+  box-shadow: 0 0 25px rgba(200, 90, 50, 0.3);
+}
+
+.glow-cyber {
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.35);
+}
+
+.text-glow-gold {
+  text-shadow: 0 0 12px rgba(229, 169, 60, 0.4);
+}
+
+.text-glow-crimson {
+  text-shadow: 0 0 12px rgba(200, 90, 50, 0.5);
+}
+
+/* Pixel art rendering for mustache icon */
+.pixelated {
+  image-rendering: pixelated;
+}
