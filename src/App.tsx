@@ -93,7 +93,7 @@ export const App: React.FC = () => {
       {/* Main Scroll-Driven Storytelling Section */}
       <div 
         ref={scrollTrackRef} 
-        className="relative w-full h-[550vh]"
+        className="relative w-full h-[380vh] sm:h-[550vh]"
       >
         <StoryCanvas
           scrollProgress={scrollProgress}
@@ -101,6 +101,7 @@ export const App: React.FC = () => {
           onChapterChange={setCurrentChapterId}
           onScrollToSummary={handleScrollToSummary}
           onScrollToHistory={handleScrollToHistory}
+          onSelectChapter={handleSelectChapter}
         />
       </div>
 
