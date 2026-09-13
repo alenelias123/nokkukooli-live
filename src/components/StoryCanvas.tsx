@@ -8,13 +8,15 @@ interface StoryCanvasProps {
   currentChapterId: number;
   onChapterChange: (chapterId: number) => void;
   onScrollToSummary: () => void;
+  onScrollToHistory?: () => void;
 }
 
 export const StoryCanvas: React.FC<StoryCanvasProps> = ({
   scrollProgress,
   currentChapterId,
   onChapterChange,
-  onScrollToSummary
+  onScrollToSummary,
+  onScrollToHistory
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const targetProgressRef = useRef<number>(0);
@@ -170,6 +172,7 @@ export const StoryCanvas: React.FC<StoryCanvasProps> = ({
         chapterProgress={chapterProgress}
         isLastChapter={activeChapter.id === 5 && chapterProgress > 0.8}
         onScrollToSummary={onScrollToSummary}
+        onScrollToHistory={onScrollToHistory}
       />
     </div>
   );

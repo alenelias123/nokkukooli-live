@@ -1,0 +1,20 @@
+# Logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories (prevent untracked OS-specific native binaries)
+node_modules/.vite/
+node_modules/.bin/*.cmd
+node_modules/.bin/*.ps1
+node_modules/@esbuild/win32-x64/
+node_modules/@rollup/*win32*
+
+# OS Files
+.DS_Store
+Thumbs.db

@@ -12,8 +12,15 @@ export const Header: React.FC<HeaderProps> = ({
   chapterProgress,
   onSelectChapter
 }) => {
+  const scrollToSection = (sectionId: string) => {
+    const el = document.getElementById(sectionId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 py-3 md:px-8 md:py-3.5 transition-all duration-300 backdrop-blur-md bg-[#12100E]/75 border-b border-white/10">
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 py-2.5 md:px-8 md:py-3 transition-all duration-300 backdrop-blur-md bg-[#12100E]/85 border-b border-white/10">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
         
         {/* Left: Brand Logo with Pixel Mustache Icon */}
@@ -32,19 +39,19 @@ export const Header: React.FC<HeaderProps> = ({
             <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-[#C85A32]" />
           </div>
 
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-2">
             <span className="font-serif tracking-widest text-xs md:text-sm font-bold text-[#F4F1EA] uppercase">
               NOKKU KOOLI
             </span>
             <span className="text-[#E5A93C] font-mono text-xs">/</span>
-            <span className="font-mono text-xs tracking-wider text-[#00F0FF] uppercase font-medium">
-              VIBECODING
+            <span className="text-[#FFD700] text-sm md:text-base leading-none drop-shadow-[0_0_8px_rgba(255,215,0,0.6)] select-none">
+              ☭
             </span>
           </div>
         </div>
 
-        {/* Center/Right: Interactive Chapter Progress Scrubber */}
-        <nav className="hidden sm:flex items-center bg-black/40 border border-white/10 rounded-full px-1.5 py-1 shadow-lg backdrop-blur-md">
+        {/* Center: Story Chapters Scrubber */}
+        <nav className="hidden lg:flex items-center bg-black/40 border border-white/10 rounded-full px-1.5 py-1 shadow-lg backdrop-blur-md">
           {CHAPTERS.map((ch) => {
             const isActive = ch.id === currentChapterId;
             return (
@@ -64,9 +71,8 @@ export const Header: React.FC<HeaderProps> = ({
                 )}
                 <span>{ch.shortTitle}</span>
 
-                {/* Real-time progress bar under active chapter */}
                 {isActive && (
-                  <div className="relative w-6 h-1 bg-black/25 rounded-full overflow-hidden">
+                  <div className="relative w-5 h-1 bg-black/25 rounded-full overflow-hidden">
                     <div 
                       className="h-full bg-[#C85A32] rounded-full transition-all duration-75"
                       style={{ width: `${Math.round(chapterProgress * 100)}%` }}
@@ -78,17 +84,45 @@ export const Header: React.FC<HeaderProps> = ({
           })}
         </nav>
 
+        {/* Right: Section Jump Links */}
+        <div className="flex items-center gap-2 font-mono text-xs">
+          <button
+            onClick={() => scrollToSection('hardware-showcase')}
+            className="px-2.5 py-1 rounded-lg text-[#A39E93] hover:text-[#E5A93C] hover:bg-white/5 transition-colors cursor-pointer hidden sm:inline-block"
+          >
+            ഹാർഡ്‌വെയർ
+          </button>
+          <button
+            onClick={() => scrollToSection('extension-showcase')}
+            className="px-2.5 py-1 rounded-lg text-[#A39E93] hover:text-[#E5A93C] hover:bg-white/5 transition-colors cursor-pointer hidden md:inline-block"
+          >
+            എക്സ്റ്റൻഷൻ
+          </button>
+          <button
+            onClick={() => scrollToSection('virtual-sentinel')}
+            className="px-2.5 py-1 rounded-lg text-[#A39E93] hover:text-[#00F0FF] hover:bg-white/5 transition-colors cursor-pointer hidden lg:inline-block"
+          >
+            സിമുലേറ്റർ
+          </button>
+          <button
+            onClick={() => scrollToSection('history-archive')}
+            className="px-3 py-1 rounded-lg bg-[#E5A93C]/15 border border-[#E5A93C]/40 text-[#E5A93C] hover:bg-[#E5A93C] hover:text-[#12100E] font-bold transition-all cursor-pointer"
+          >
+            ചരിത്രം
+          </button>
+        </div>
+
       </div>
 
-      {/* Mobile Chapter Scrubber Strip */}
-      <div className="sm:hidden flex items-center justify-between gap-1 mt-2 pt-2 border-t border-white/5 overflow-x-auto no-scrollbar">
+      {/* Mobile Quick Navigation Strip */}
+      <div className="lg:hidden flex items-center justify-between gap-1 mt-2 pt-2 border-t border-white/5 overflow-x-auto no-scrollbar">
         {CHAPTERS.map((ch) => {
           const isActive = ch.id === currentChapterId;
           return (
             <button
               key={ch.id}
               onClick={() => onSelectChapter(ch.id)}
-              className={`text-[10px] font-mono px-2.5 py-0.5 rounded whitespace-nowrap transition-colors ${
+              className={`text-[10px] font-mono px-2 py-0.5 rounded whitespace-nowrap transition-colors ${
                 isActive
                   ? 'bg-[#E5A93C] text-[#12100E] font-bold'
                   : 'text-[#A39E93] hover:text-[#F4F1EA]'
@@ -98,6 +132,24 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           );
         })}
+        <button
+          onClick={() => scrollToSection('history-archive')}
+          className="text-[10px] font-mono px-2 py-0.5 text-[#E5A93C] whitespace-nowrap"
+        >
+          ചരിത്രം
+        </button>
+        <button
+          onClick={() => scrollToSection('hardware-showcase')}
+          className="text-[10px] font-mono px-2 py-0.5 text-[#E5A93C] whitespace-nowrap"
+        >
+          ഹാർഡ്‌വെയർ
+        </button>
+        <button
+          onClick={() => scrollToSection('virtual-sentinel')}
+          className="text-[10px] font-mono px-2 py-0.5 text-[#00F0FF] whitespace-nowrap font-bold"
+        >
+          സിമുലേറ്റർ
+        </button>
       </div>
     </header>
   );

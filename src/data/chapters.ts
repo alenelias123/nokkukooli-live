@@ -1,4 +1,4 @@
-import { Chapter, ComparativeRow } from '../types/storytelling';
+import { Chapter } from '../types/storytelling';
 
 export const CHAPTERS: Chapter[] = [
   {
@@ -85,40 +85,5 @@ export const CHAPTERS: Chapter[] = [
       { label: 'Tribute Accepted', value: 'Chai / Sol / Tap-to-Approve' }
     ],
     themeColor: '#00F0FF'
-  }
-];
-
-export const COMPARISON_ROWS: ComparativeRow[] = [
-  {
-    historicalElement: '1970s Trade Union',
-    historicalDesc: 'CITU / INTUC dock collectives assembling at Kochi and Alappuzha ports to establish territorial loading jurisdiction.',
-    digitalElement: 'Localhost VS Code Plugin',
-    digitalDesc: 'Background daemon intercepting LSP language server autocompletions until watching tribute is cryptographically signed.',
-    badge: 'ORGANIZATIONAL LAYER',
-    iconName: 'Users'
-  },
-  {
-    historicalElement: 'Container Gantry Crane',
-    historicalDesc: 'Hydraulic steel gantry lowering 40ft freight containers onto trucks in seconds, displacing 50 headload carriers.',
-    digitalElement: 'LLM Code Generation (Cursor / Copilot)',
-    digitalDesc: 'Transformer models generating full-stack microservices in milliseconds, displacing manual typing and syntax debugging.',
-    badge: 'DISRUPTIVE AUTOMATION',
-    iconName: 'Cpu'
-  },
-  {
-    historicalElement: 'Physical Headload Worker',
-    historicalDesc: 'Experienced worker with folded mundu and red shoulder cloth standing vigilant on the pier with arms crossed.',
-    digitalElement: 'Desktop Robot Assistant',
-    digitalDesc: '3D-printed mascot with miniature folded mundu and twitching mustache standing beside your mechanical keyboard.',
-    badge: 'LABOR EMBODIMENT',
-    iconName: 'Bot'
-  },
-  {
-    historicalElement: 'Nokku Kooli Fee',
-    historicalDesc: 'Cash payment rendered to union members simply for observing mechanical crane operations on their home territory.',
-    digitalElement: 'Tap-to-Approve Hardware Tribute',
-    digitalDesc: 'Capacitive touch tap on the mascot’s head to authorize git commit, simulating compliance with localhost labor laws.',
-    badge: 'SURCHARGE PROTOCOL',
-    iconName: 'Coins'
   }
 ];

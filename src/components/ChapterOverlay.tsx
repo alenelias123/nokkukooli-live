@@ -8,12 +8,14 @@ interface ChapterOverlayProps {
   chapterProgress: number; // 0 to 1
   isLastChapter?: boolean;
   onScrollToSummary?: () => void;
+  onScrollToHistory?: () => void;
 }
 
 export const ChapterOverlay: React.FC<ChapterOverlayProps> = ({
   chapter,
   isLastChapter,
-  onScrollToSummary
+  onScrollToSummary,
+  onScrollToHistory
 }) => {
   const getIcon = () => {
     switch (chapter.id) {
@@ -91,19 +93,34 @@ export const ChapterOverlay: React.FC<ChapterOverlayProps> = ({
           </motion.div>
         </AnimatePresence>
 
-        {/* Explore Summary Action Button (Only on Chapter 5) */}
+        {/* Explore Summary & History Action Buttons (Only on Chapter 5) */}
         {isLastChapter && (
-          <motion.button
-            onClick={onScrollToSummary}
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            className="pointer-events-auto flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#C85A32] to-[#E5A93C] text-[#12100E] font-mono text-xs font-bold shadow-lg shadow-[#C85A32]/30 hover:shadow-[#E5A93C]/40 transition-all cursor-pointer whitespace-nowrap self-end"
-          >
-            <span>താരതമ്യ ആർട്ടിഫാക്റ്റുകൾ കാണുക</span>
-            <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
-          </motion.button>
+          <div className="pointer-events-auto flex flex-col sm:flex-row items-end sm:items-center gap-3 self-end">
+            {onScrollToHistory && (
+              <motion.button
+                onClick={onScrollToHistory}
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-black/60 border border-[#E5A93C]/40 text-[#E5A93C] font-mono text-xs font-bold shadow-lg hover:bg-[#E5A93C]/20 transition-all cursor-pointer whitespace-nowrap"
+              >
+                <span>വിശദമായ ചരിത്രം കാണുക</span>
+                <ArrowDown className="w-3.5 h-3.5" />
+              </motion.button>
+            )}
+            <motion.button
+              onClick={onScrollToSummary}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#C85A32] to-[#E5A93C] text-[#12100E] font-mono text-xs font-bold shadow-lg shadow-[#C85A32]/30 hover:shadow-[#E5A93C]/40 transition-all cursor-pointer whitespace-nowrap"
+            >
+              <span>പ്രോജക്റ്റ് വിശദാംശങ്ങൾ കാണുക</span>
+              <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
+            </motion.button>
+          </div>
         )}
       </div>
 
